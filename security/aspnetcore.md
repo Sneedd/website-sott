@@ -28,3 +28,24 @@ public static async Task<bool> IsUserAuthorizedAsync(this HttpContext context, s
     return result.Succeeded;
 }
 ```
+
+## Get cookie name
+
+``` c#
+public static string? GetCookieName(this HttpContext context, string? scheme = null)
+{
+    var options = context.RequestServices.GetRequiredService<IOptionsMonitor<CookieAuthenticationOptions>>();
+    var cookieOptions = options.Get(scheme);
+    return cookieOptions?.Cookie.Name;
+}
+
+
+HttpContext context = /* .. */;
+var name = context.GetCookieName(IdentityConstants.ApplicationScheme); // default when using ConfigureApplicationCookie()
+Assert.AreEquals("AspNetCore.Identity.Application", name);  // Note: Different when environment <> ('Development' || 'Production')
+
+
+```
+
+
+
