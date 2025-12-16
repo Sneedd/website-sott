@@ -1,5 +1,8 @@
 # Security in ASP.NET Core
 
+TODO : Move to cheat_aspnetcore.md
+
+
 >> WARNING : This code is not production ready
 
 ## Test if user is authorized
